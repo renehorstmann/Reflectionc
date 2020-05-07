@@ -129,15 +129,15 @@ hr_parsedinfo hr_parse_info_text(strviu viu) {
             item.begin += 5;
             item = sv_strip(item, ' ');
 
-            res.parameter_infos_len++;
-            if (res.parameter_infos_len > HR_MAX_PARAMETERS) {
-                res.parameter_infos_len = HR_MAX_PARAMETERS;
+            res.parameter_infos_size++;
+            if (res.parameter_infos_size > HR_MAX_PARAMETERS) {
+                res.parameter_infos_size = HR_MAX_PARAMETERS;
                 log_warn("Too many parameter infos, only %d are allowed", HR_MAX_PARAMETERS);
                 continue;
             }
 
             char *item_text = get_info_text_on_heap_(item);
-            res.parameter_infos[res.parameter_infos_len - 1] = hr_parse_parameter_info_text(ToStrViu(item_text));
+            res.parameter_infos[res.parameter_infos_size - 1] = hr_parse_parameter_info_text(ToStrViu(item_text));
             free(item_text);
             continue;
         }
@@ -309,8 +309,8 @@ hr_parsedfunction hr_parse_function(strviu info, strviu definition) {
     res.return_type[sizeof(res.return_type)-1] = '\0';
     free(type_string);
 
-    res.parameters_len = params.size;
-    for (size_t i = 0; i < res.parameters_len; i++)
+    res.parameters_size = params.size;
+    for (size_t i = 0; i < res.parameters_size; i++)
         res.parameters[i] = hr_parse_parameter(params.array[i]);
 
     return res;

@@ -28,7 +28,7 @@ typedef struct {
     hr_string return_info;
     hr_string error_info;
     hr_parsedparameterinfo parameter_infos[HR_MAX_PARAMETERS];
-    size_t parameter_infos_len;
+    size_t parameter_infos_size;
 } hr_parsedinfo;
 
 // static   const int *get_foo(); -> .name="get_foo", .return_type="static const int *"
@@ -36,7 +36,7 @@ typedef struct {
     hr_shortstring name;
     hr_shortstring return_type;
     hr_parsedparameter parameters[HR_MAX_PARAMETERS];
-    size_t parameters_len;
+    size_t parameters_size;
     hr_parsedinfo info;
 } hr_parsedfunction;
 

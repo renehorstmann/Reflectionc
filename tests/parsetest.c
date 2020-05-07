@@ -50,7 +50,7 @@ int main() {
 
         viu = ToStrViu("");
         res = hr_parse_info_text(viu);
-        if (*res.text != 0 || *res.return_info != 0 || *res.error_info != 0 || res.parameter_infos_len > 0)
+        if (*res.text != 0 || *res.return_info != 0 || *res.error_info != 0 || res.parameter_infos_size > 0)
             return error("hr_parse_parameter_info_text 0 failed");
 
         viu = ToStrViu("/** single line comment before the function */");
@@ -58,7 +58,7 @@ int main() {
         if (str_not_equal(res.text, "single line comment before the function")
             || str_not_equal(res.return_info, "")
             || str_not_equal(res.error_info, "")
-            || res.parameter_infos_len != 0)
+            || res.parameter_infos_size != 0)
             return error("hr_parse_info_text 1 failed");
 
         viu = ToStrViu("//\tanother single line comment.\t\n");
@@ -66,7 +66,7 @@ int main() {
         if (str_not_equal(res.text, "another single line comment.")
             || str_not_equal(res.return_info, "")
             || str_not_equal(res.error_info, "")
-            || res.parameter_infos_len != 0)
+            || res.parameter_infos_size != 0)
             return error("hr_parse_info_text 2 failed");
 
         viu = ToStrViu("/**\n"
@@ -86,7 +86,7 @@ int main() {
             || str_not_equal(res.return_info, "the real result")
             || str_not_equal(res.error_info, "-1"))
             return error("hr_parse_info_text 3.1 failed");
-        if (res.parameter_infos_len != 4)
+        if (res.parameter_infos_size != 4)
             return error("hr_parse_info_text 3.2 failed");
         if (str_not_equal(res.parameter_infos[0].name, "val")
             || str_not_equal(res.parameter_infos[0].default_value, "")
@@ -154,21 +154,21 @@ int main() {
 
         viu = ToStrViu("");
         res = hr_parse_function(info, viu);
-        if (*res.name != 0 || *res.return_type != 0 || res.parameters_len != 0)
+        if (*res.name != 0 || *res.return_type != 0 || res.parameters_size != 0)
             return error("hr_parse_function 0 failed");
 
         viu = ToStrViu("void foo()");
         res = hr_parse_function(info, viu);
         if (str_not_equal(res.name, "foo")
             || str_not_equal(res.return_type, "void")
-            || res.parameters_len != 0)
+            || res.parameters_size != 0)
             return error("hr_parse_function 1 failed");
 
         viu = ToStrViu("EXPORT \n\t int \t *bar()");
         res = hr_parse_function(info, viu);
         if (str_not_equal(res.name, "bar")
             || str_not_equal(res.return_type, "EXPORT int *")
-            || res.parameters_len != 0)
+            || res.parameters_size != 0)
             return error("hr_parse_function 2 failed");
 
         viu = ToStrViu("struct P get_p(int a, const char*b)");
@@ -176,7 +176,7 @@ int main() {
         if (str_not_equal(res.name, "get_p")
             || str_not_equal(res.return_type, "struct P"))
             return error("hr_parse_function 3.1 failed");
-        if (res.parameters_len != 2)
+        if (res.parameters_size != 2)
             return error("hr_parse_function 3.2 failed");
         if (str_not_equal(res.parameters[0].name, "a")
             || str_not_equal(res.parameters[0].type, "int"))
