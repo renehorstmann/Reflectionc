@@ -3,17 +3,26 @@
 
 #include "base.h"
 
+// int cnt -> .name="cnt", .type="int"
 typedef struct {
     hr_shortstring name;
     hr_shortstring type;
 } hr_parsedparameter;
 
+// @param cnt=10: counter value -> .name="cnt", .default_value="10", .info="counter value"
+// @param flag: boolean flag -> .name="flag", .default="", .info="boolean flag"
 typedef struct {
     hr_shortstring name;
     hr_shortstring default_value;
     hr_string info;
 } hr_parsedparameterinfo;
 
+// This function divides a with b.
+// @param a: value a
+// @param b: value b
+// @return: div of a / b
+// @error: raises SIGFPE if b==0
+// -> .text="This function divides a with b.", .return_info="div of a/b", .error_info="raises SIGFPE if b==0
 typedef struct {
     hr_longstring text;
     hr_string return_info;
@@ -22,6 +31,7 @@ typedef struct {
     size_t parameter_infos_len;
 } hr_parsedinfo;
 
+// static   const int *get_foo(); -> .name="get_foo", .return_type="static const int *"
 typedef struct {
     hr_shortstring name;
     hr_shortstring return_type;
