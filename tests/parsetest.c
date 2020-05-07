@@ -174,8 +174,7 @@ int main() {
         viu = ToStrViu("struct P get_p(int a, const char*b)");
         res = hr_parse_function(info, viu);
         if (str_not_equal(res.name, "get_p")
-            || str_not_equal(res.return_type, "struct P")
-            || res.parameters == NULL)
+            || str_not_equal(res.return_type, "struct P"))
             return error("hr_parse_function 3.1 failed");
         if (res.parameters_len != 2)
             return error("hr_parse_function 3.2 failed");
