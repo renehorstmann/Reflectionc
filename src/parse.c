@@ -6,9 +6,9 @@
 
 #include "reflectionc/log.h"
 
-hr_parsedparameterinfo hr_parse_parameter_info_text(strviu viu) {
+hr_parameterinfo hr_parse_parameter_info_text(strviu viu) {
     // string view such as "c_name=\"Peter\": the c_name of some guy."
-    hr_parsedparameterinfo res = {0};
+    hr_parameterinfo res = {0};
 
     viu = sv_strip(viu, ' ');
     strviu name = {viu.begin};
@@ -72,8 +72,8 @@ static char *get_info_text_on_heap_(strviu viu) {
     return text;
 }
 
-hr_parsedinfo hr_parse_info_text(strviu viu) {
-    hr_parsedinfo res = {0};
+hr_info hr_parse_info_text(strviu viu) {
+    hr_info res = {0};
 
     // remove leading and heading white spaces
     viu = sv_strip(viu, ' ');
@@ -225,9 +225,9 @@ char *hr_parse_type(strviu viu) {
     return res;
 }
 
-hr_parsedparameter hr_parse_parameter(strviu viu) {
+hr_parameter hr_parse_parameter(strviu viu) {
     // string view such as "const char *c_name" or "string IN s", ...
-    hr_parsedparameter res = {0};
+    hr_parameter res = {0};
 
     viu = sv_strip(viu, ' ');
 
@@ -264,8 +264,8 @@ hr_parsedparameter hr_parse_parameter(strviu viu) {
     return res;
 }
 
-hr_parsedfunction hr_parse_function(strviu info, strviu definition) {
-    hr_parsedfunction res = {0};
+hr_function hr_parse_function(strviu info, strviu definition) {
+    hr_function res = {0};
 
     res.info = hr_parse_info_text(info);
 

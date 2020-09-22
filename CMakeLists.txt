@@ -9,11 +9,10 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wno-long-long -pedantic -Wno-unused-f
 
 add_library(reflectionc
         src/log.c
-        src/parsetypes.c
+        src/types.c
         src/parse.c
         src/parsefile.c
         src/types.c
-        src/sort.c
         src/filter.c
         )
 
@@ -29,11 +28,13 @@ enable_testing()
 
 # Define the executable test
 add_executable(main tests/main.c)
-add_executable(testparse tests/parsetest.c)
-add_executable(testfilter tests/filtertest.c)
+add_executable(prototype tests/prototype.c)
+add_executable(testparse tests/test_parse.c)
+add_executable(testfilter tests/test_filter.c)
 
 # link to the library
 target_link_libraries(main reflectionc)
+target_link_libraries(prototype reflectionc)
 target_link_libraries(testparse reflectionc)
 target_link_libraries(testfilter reflectionc)
 

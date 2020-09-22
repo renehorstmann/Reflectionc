@@ -1,17 +1,9 @@
 #include <stdio.h>
-#include <string.h>
-
-#include "reflectionc/types.h"
 #include "reflectionc/parse.h"
-#include "test_helper.h"
+#include "reflectionc/filter.h"
 
 int main() {
-
-    char *filetext = open_file_as_string("file_example.h");
-    if (!filetext)
-        exit(EXIT_FAILURE);
-
-    HrFunctionArray res = hr_parse_file_text(ToStrViu(filetext));
+    HrFunctionArray res = hr_parse_file("file_example.h");
 
     for (int f = 0; f < res.size; f++) {
         hr_function function = res.array[f];

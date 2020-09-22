@@ -1,7 +1,7 @@
 #ifndef REFLECTIONC_BASE_H
 #define REFLECTIONC_BASE_H
 
-#define HR_MAX_PARAMETERS 16
+#define HR_MAX_PARAMETERS 32
 
 typedef char hr_shortstring[128];
 typedef char hr_string[256];

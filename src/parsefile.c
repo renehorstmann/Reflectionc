@@ -1,5 +1,6 @@
 #include <assert.h>
 #include "reflectionc/utilc/alloc.h"
+#include "reflectionc/log.h"
 #include "reflectionc/parse.h"
 
 
@@ -154,8 +155,8 @@ static strviuarray get_functions(strviu viu) {
     return functions;
 }
 
-HrParsedFunctionArray hr_parse_file(strviu filetext) {
-    HrParsedFunctionArray res = {0};
+HrFunctionArray hr_parse_file_text(strviu filetext) {
+    HrFunctionArray res = {0};
 
     char *copy_function = sv_heap_cpy(filetext);
     strviu viu = {copy_function, copy_function + sv_length(filetext)};
@@ -170,7 +171,7 @@ HrParsedFunctionArray hr_parse_file(strviu filetext) {
     comments.size = functions.size;
     res.size = functions.size;
     if(res.size > 0)
-        res.array = New0(hr_parsedfunction, functions.size);
+        res.array = New0(hr_function, functions.size);
 
     for (size_t i = 0; i < functions.size; i++) {
         size_t decl_start_pos = functions.array[i].begin - copy_function;
@@ -193,6 +194,33 @@ HrParsedFunctionArray hr_parse_file(strviu filetext) {
         res.array[i] = hr_parse_function(comments.array[i], functions.array[i]);
 
     free(copy_function);
+    return res;
+}
+
+
+static char *open_file_as_string(const char *filename) {
+    char *text = NULL;
+    FILE *file = fopen(filename, "r");
+    if (file) {
+        fseek(file, 0, SEEK_END);
+        long length = ftell(file);
+        fseek(file, 0, SEEK_SET);
+        text = malloc(length);
+        if (text)
+            fread(text, 1, length, file);
+        fclose(file);
+    }
+    return text;
+}
+
+HrFunctionArray hr_parse_file(const char *file) {
+    char *file_text = open_file_as_string(file);
+    if(!file_text) {
+        log_error("Could not load file: %s", file);
+        return (HrFunctionArray) {0};
+    }
+    HrFunctionArray res = hr_parse_file_text(ToStrViu(file_text));
+    free(file_text);
     return res;
 }
 
