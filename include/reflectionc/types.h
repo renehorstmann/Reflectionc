@@ -7,7 +7,7 @@
 typedef struct {
     hr_shortstring name;
     hr_shortstring type;
-} hr_parameter;
+} HrParameter_s;
 
 // @param cnt=10: counter value -> .name="cnt", .default_value="10", .info="counter value"
 // @param flag: boolean flag -> .name="flag", .default="", .info="boolean flag"
@@ -15,7 +15,7 @@ typedef struct {
     hr_shortstring name;
     hr_shortstring default_value;
     hr_string info;
-} hr_parameterinfo;
+} HrParameterInfo_s;
 
 // This function divides a with b.
 // @param a: value a
@@ -27,21 +27,21 @@ typedef struct {
     hr_longstring text;
     hr_string return_info;
     hr_string error_info;
-    hr_parameterinfo parameter_infos[HR_MAX_PARAMETERS];
+    HrParameterInfo_s parameter_infos[HR_MAX_PARAMETERS];
     size_t parameter_infos_size;
-} hr_info;
+} HrInfo_s;
 
 // static   const int *get_foo(); -> .name="get_foo", .return_type="static const int *"
 typedef struct {
     hr_shortstring name;
     hr_shortstring return_type;
-    hr_parameter parameters[HR_MAX_PARAMETERS];
+    HrParameter_s parameters[HR_MAX_PARAMETERS];
     size_t parameters_size;
-    hr_info info;
-} hr_function;
+    HrInfo_s info;
+} HrFunction_s;
 
 typedef struct {
-    hr_function *array;
+    HrFunction_s *array;
     size_t size;
 } HrFunctionArray;
 

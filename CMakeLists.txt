@@ -20,6 +20,15 @@ target_include_directories(reflectionc PUBLIC include)
 
 
 #
+# install:
+#
+install(TARGETS reflectionc
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        )
+install(DIRECTORY include/ DESTINATION include)
+
+#
 # Testing
 #
 

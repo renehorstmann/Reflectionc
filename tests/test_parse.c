@@ -4,7 +4,7 @@
 
 void parameter_info() {
     strviu viu;
-    hr_parameterinfo res;
+    HrParameterInfo_s res;
 
     viu = ToStrViu("");
     res = hr_parse_parameter_info_text(viu);
@@ -42,7 +42,7 @@ void parameter_info() {
 
 void info() {
     strviu viu;
-    hr_info res;
+    HrInfo_s res;
 
     viu = ToStrViu("");
     res = hr_parse_info_text(viu);
@@ -104,7 +104,7 @@ void info() {
 
 void parameter() {
     strviu viu;
-    hr_parameter res;
+    HrParameter_s res;
 
     viu = ToStrViu("");
     res = hr_parse_parameter(viu);
@@ -144,7 +144,7 @@ void parameter() {
 
 void function() {
     strviu viu;
-    hr_function res;
+    HrFunction_s res;
     strviu info = ToStrViu("");
 
     viu = ToStrViu("");

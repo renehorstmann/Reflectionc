@@ -171,7 +171,7 @@ HrFunctionArray hr_parse_file_text(strviu filetext) {
     comments.size = functions.size;
     res.size = functions.size;
     if(res.size > 0)
-        res.array = New0(hr_function, functions.size);
+        res.array = New0(HrFunction_s, functions.size);
 
     for (size_t i = 0; i < functions.size; i++) {
         size_t decl_start_pos = functions.array[i].begin - copy_function;

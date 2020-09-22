@@ -13,7 +13,7 @@ DynArray(int, IntArray, int_array)
 static HrFunctionArray apply_indices_function_array(HrFunctionArray array, IntArray indices) {
     HrFunctionArray res = {0};
     if (indices.size > 0) {
-        res.array = New0(hr_function, (res.size = indices.size));
+        res.array = New0(HrFunction_s, (res.size = indices.size));
         for (size_t i = 0; i < indices.size; i++)
             res.array[i] = array.array[indices.array[i]];
     }
