@@ -11,7 +11,7 @@ int main() {
     if (!filetext)
         exit(EXIT_FAILURE);
 
-    hr_ParsedFunctionArray res = hr_parse_file(ToStrViu(filetext));
+    HrParsedFunctionArray res = hr_parse_file(ToStrViu(filetext));
 
     for (int f = 0; f < res.size; f++) {
         hr_parsedfunction function = res.array[f];

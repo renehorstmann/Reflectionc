@@ -43,7 +43,7 @@ typedef struct {
 typedef struct {
     hr_parsedfunction *array;
     size_t size;
-} hr_ParsedFunctionArray;
+} HrParsedFunctionArray;
 
 //typedef struct {
 //    shortstring name;
@@ -61,7 +61,7 @@ typedef struct {
 //    hr_ParsedTypeDeclarationArray members;
 //} hr_ParsedStruct;
 
-void hr_ParsedFunctionArray_kill(hr_ParsedFunctionArray *self);
+void hr_parsed_function_array_kill(HrParsedFunctionArray *self);
 
 //void hr_ParsedTypeDeclarationArray_kill(hr_ParsedTypeDeclarationArray *self);
 //

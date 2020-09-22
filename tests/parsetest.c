@@ -258,7 +258,7 @@ int main() {
 
     {
         // file
-        hr_ParsedFunctionArray res;
+        HrParsedFunctionArray res;
 
         char *filetext = open_file_as_string("filetest1.txt");
         if (filetext) {

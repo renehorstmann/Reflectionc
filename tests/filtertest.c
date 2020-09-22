@@ -10,11 +10,11 @@ int main() {
     if(!file)
         return error("couldnt open file");
 
-    hr_ParsedFunctionArray parsed_functions = hr_parse_file(ToStrViu(file));
+    HrParsedFunctionArray parsed_functions = hr_parse_file(ToStrViu(file));
     if(parsed_functions.size != 6)
         return error("hr_parse_file failed");
 
-    hr_FunctionArray functions = hr_get_function_array_without_paramaters(&parsed_functions);
+    HrFunctionArray functions = hr_get_function_array_without_paramaters(&parsed_functions);
 
     functions = hr_filter_function_non_static(functions, true);
     if(functions.size != 6)

@@ -34,8 +34,8 @@ hr_function hr_get_function_without_paramaters(const hr_parsedfunction *function
     return res;
 }
 
-hr_FunctionArray hr_get_function_array_without_paramaters(const hr_ParsedFunctionArray *array) {
-    hr_FunctionArray res = {0};
+HrFunctionArray hr_get_function_array_without_paramaters(const HrParsedFunctionArray *array) {
+    HrFunctionArray res = {0};
     if(array->size>0) {
         res.array = New0(hr_function, (res.size = array->size));
         for(size_t i=0; i<array->size; i++)

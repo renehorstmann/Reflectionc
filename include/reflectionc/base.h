@@ -9,7 +9,7 @@ typedef char hr_longstring[512];
 
 typedef const char *hr_err;
 
-#define HrSuccess (hr_err) 0
+#define HR_SUCCESS (hr_err) 0
 
 #endif //REFLECTIONC_BASE_H
 

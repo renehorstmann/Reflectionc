@@ -34,7 +34,7 @@ typedef struct {
 typedef struct {
     hr_function *array;
     size_t size;
-} hr_FunctionArray;
+} HrFunctionArray;
 
 //typedef struct {
 //    shortstring name;
@@ -46,7 +46,7 @@ typedef struct {
 //} hr_Class;
 
 
-void hr_FunctionArray_kill(hr_FunctionArray *self);
+void hr_function_array_kill(HrFunctionArray *self);
 
 #endif //REFLECTIONC_TYPES_H
 

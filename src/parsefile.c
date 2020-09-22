@@ -1,6 +1,5 @@
-
+#include <assert.h>
 #include "reflectionc/utilc/alloc.h"
-
 #include "reflectionc/parse.h"
 
 
@@ -155,8 +154,8 @@ static strviuarray get_functions(strviu viu) {
     return functions;
 }
 
-hr_ParsedFunctionArray hr_parse_file(strviu filetext) {
-    hr_ParsedFunctionArray res = {0};
+HrParsedFunctionArray hr_parse_file(strviu filetext) {
+    HrParsedFunctionArray res = {0};
 
     char *copy_function = sv_heap_cpy(filetext);
     strviu viu = {copy_function, copy_function + sv_length(filetext)};

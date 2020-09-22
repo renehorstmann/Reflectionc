@@ -20,7 +20,7 @@ hr_parsedfunction hr_parse_function(strviu info, strviu definition);
 
 //hr_ParsedStruct hr_parse_struct(strviu info, strviu definition);
 
-hr_ParsedFunctionArray hr_parse_file(strviu filetext);
+HrParsedFunctionArray hr_parse_file(strviu filetext);
 
 #endif //REFLECTIONC_PARSE_H
 

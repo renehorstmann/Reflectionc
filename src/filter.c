@@ -7,11 +7,11 @@
 #include "reflectionc/filter.h"
 
 
-DynArray(int, IntArray)
+DynArray(int, IntArray, int_array)
 
 
-static hr_FunctionArray apply_indices_function_array(hr_FunctionArray array, IntArray indices) {
-    hr_FunctionArray res = {0};
+static HrFunctionArray apply_indices_function_array(HrFunctionArray array, IntArray indices) {
+    HrFunctionArray res = {0};
     if (indices.size > 0) {
         res.array = New0(hr_function, (res.size = indices.size));
         for (size_t i = 0; i < indices.size; i++)
@@ -31,50 +31,50 @@ static hr_parameterarray apply_indices_parameter_array(const hr_parameterarray *
 }
 
 
-hr_FunctionArray hr_filter_function_non_static(hr_FunctionArray array, bool free_array) {
+HrFunctionArray hr_filter_function_non_static(HrFunctionArray array, bool free_array) {
     IntArray indices = {0};
-    IntArray_set_capacity(&indices, array.size);
+    int_array_set_capacity(&indices, array.size);
 
     for (size_t i = 0; i < array.size; i++) {
         if (strstr(array.array[i].return_parameter.type, "static") == NULL)
-            IntArray_push(&indices, i);
+            int_array_push(&indices, i);
     }
 
-    hr_FunctionArray res = apply_indices_function_array(array, indices);
-    IntArray_kill(&indices);
+    HrFunctionArray res = apply_indices_function_array(array, indices);
+    int_array_kill(&indices);
     if (free_array)
-        hr_FunctionArray_kill(&array);
+        hr_function_array_kill(&array);
     return res;
 }
 
 
-hr_FunctionArray hr_filter_function_name_prefix(hr_FunctionArray array, const char *name_prefix, bool free_array) {
+HrFunctionArray hr_filter_function_name_prefix(HrFunctionArray array, const char *name_prefix, bool free_array) {
     IntArray indices = {0};
-    IntArray_set_capacity(&indices, array.size);
+    int_array_set_capacity(&indices, array.size);
 
     for (size_t i = 0; i < array.size; i++) {
         if (strncmp(array.array[i].c_name, name_prefix, strlen(name_prefix)) == 0)
-            IntArray_push(&indices, i);
+            int_array_push(&indices, i);
     }
 
-    hr_FunctionArray res = apply_indices_function_array(array, indices);
-    IntArray_kill(&indices);
+    HrFunctionArray res = apply_indices_function_array(array, indices);
+    int_array_kill(&indices);
     if (free_array)
-        hr_FunctionArray_kill(&array);
+        hr_function_array_kill(&array);
     return res;
 }
 
 hr_parameterarray hr_filter_parameter_name_prefix(hr_parameterarray array, const char *name_prefix) {
     IntArray indices = {0};
-    IntArray_set_capacity(&indices, array.size);
+    int_array_set_capacity(&indices, array.size);
 
     for (size_t i = 0; i < array.size; i++) {
         if (strncmp(array.array[i].name, name_prefix, strlen(name_prefix)) == 0)
-            IntArray_push(&indices, i);
+            int_array_push(&indices, i);
     }
 
     hr_parameterarray res = apply_indices_parameter_array(&array, indices);
-    IntArray_kill(&indices);
+    int_array_kill(&indices);
     return res;
 }
 
