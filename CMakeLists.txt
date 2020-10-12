@@ -7,7 +7,7 @@ set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} -march=native)  # march=native for best perfo
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wno-long-long -pedantic -Wno-unused-function -Wno-missing-braces")
 
 
-add_library(reflectionc
+add_library(reflectionc SHARED
         src/log.c
         src/types.c
         src/parse.c
